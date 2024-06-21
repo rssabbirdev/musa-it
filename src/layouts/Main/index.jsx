@@ -26,7 +26,7 @@ export default function Main() {
 	);
 	return (
 		<>
-			<div className='flex justify-between flex-col'>
+			<div className='flex justify-between flex-col animate-fadeOut'>
 				<div className='container m-auto'>
 					<Navbar navMenuData={navMenuData} />
 				</div>

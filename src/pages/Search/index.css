@@ -14,7 +14,7 @@
 	background: #fff;
 	color: #000;
 	outline: none;
-	padding: 0 60px 0 20px;
+	padding: 0 60px 0 60px;
 	font-size: 18px;
 	opacity: 0;
 	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -27,7 +27,7 @@
 }
 .search-box .search-icon {
 	position: absolute;
-	right: 0px;
+	left: 0px;
 	top: 50%;
 	transform: translateY(-50%);
 	height: 60px;
@@ -42,29 +42,56 @@
 	z-index: 1;
 	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+.search-box .arrow-icon {
+	position: absolute;
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 40px;
+	width: 40px;
+	padding: 10px;
+	display: none;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 60px;
+	color: #000;
+	cursor: pointer;
+}
 .search-box .search-icon.active {
-	right: 5px;
+	left: 5px;
 	height: 50px;
 	line-height: 50px;
 	width: 50px;
 	font-size: 20px;
-	background: #000;
-	color: #fff;
+	color: #000;
 	transform: translateY(-50%) rotate(360deg);
+}
+.search-box .arrow-icon.active {
+	right: 5px;
+	height: 45px;
+	line-height: 50px;
+	width: 50px;
+	font-size: 15px;
+	color: #000;
+	display: block;
 }
 .search-box .cancel-icon {
 	position: absolute;
 	right: 20px;
 	top: 50%;
 	transform: translateY(-50%);
-	font-size: 25px;
+	font-size: 50px;
 	color: #fff;
 	cursor: pointer;
+	border-radius: 50%;
 	transition: all 0.5s 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .search-box .cancel-icon.active {
-	right: -40px;
+	right: -60px;
 	transform: translateY(-50%) rotate(360deg);
+	background:#fff;
+	padding: 10px;
+	color: black;
 }
 .search-box .search-data {
 	text-align: center;
