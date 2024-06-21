@@ -537,16 +537,16 @@ export default function Home() {
 		return <LogoSpinner />;
 	}
 	return (
-		<div className='absolute border-b-2 pb-11'>
+		<div className='border-none pb-36 md:pb-8'>
 			<Particles
 				id='tsparticles'
 				particlesLoaded={particlesLoaded}
 				options={options}
 			/>
-			<div className='flex justify-between ml-7 select-none flex-col sm:flex-row'>
-				<div className='w-full sm:w-1/2 mt-32 leading-7 flex flex-col gap-5'>
+			<div className='flex justify-between ml-0 p-5 md:ml-7 select-none flex-col md:flex-row'>
+				<div className='w-full md:w-1/2 mt-32 leading-7 flex flex-col gap-5'>
 					<h1 className='text-7xl'>MUSE-IT</h1>
-					<p>
+					<p className='text-justify'>
 						Welcome to Muse-it, your gateway to exploring and
 						visualizing your Reddit music data. Dive into insightful
 						analyses and seamlessly download CSV files for research
@@ -554,19 +554,19 @@ export default function Home() {
 					</p>
 				</div>
 				<div className=''>
-					<div className='absolute'>
+					<div className='absolute hidden md:block'>
 						<HomeIcons />
 					</div>
-					<div className='relative -bottom-[102px] hidden sm:block'>
+					<div className='relative -bottom-[100px] md:left-5 hidden md:block'>
 						<img
 							src={manImage}
-							width={300}
+							width={283}
 							alt='Man Holding a Phone'
 						/>
 					</div>
 				</div>
 			</div>
-			<div className='flex justify-center items-center relative bottom-20'>
+			<div className='flex justify-center items-center static md:relative bottom-20'>
 				{/* <div className='bg-white w-[300px] text-black flex justify-between items-center ml-20 px-4 py-3 rounded-full'>
 					<CiSearch className='text-3xl w-2/12' />
 					<input
@@ -577,7 +577,7 @@ export default function Home() {
 				</div> */}
 				<Link to={'/search'}>
 					<div
-						className={`flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+						className={`mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
 					>
 						<CiSearch className={'text-3xl'} />
 						<span className='text-sm'>{'Search Reddit'}</span>

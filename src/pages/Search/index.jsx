@@ -14,7 +14,7 @@ export default function Search() {
 					placeholder='Search On Reddit'
 					className='bg-transparent outline-none w-10/12 px-2 py-1'
 				/> */}
-			<div className={`search-box ${active && 'active'}`}>
+			<div className={`search-box ${active && 'active w-[250px] sm:w-[350px]'}`}>
 				<input
 					className={`${active && 'active'}`}
 					type='text'

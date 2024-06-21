@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import { useState } from 'react';
+import Footer from '../../components/Footer';
 
 export default function Main() {
 	// eslint-disable-next-line no-unused-vars
@@ -24,11 +25,18 @@ export default function Main() {
 		] || []
 	);
 	return (
-		<div className=''>
-			<div className='container m-auto'>
-				<Navbar navMenuData={navMenuData} />
+		<>
+			<div className='flex justify-between flex-col'>
+				<div className='container m-auto'>
+					<Navbar navMenuData={navMenuData} />
+				</div>
+				<div>
+					<Outlet />
+				</div>
+				<div>
+					<Footer />
+				</div>
 			</div>
-			<Outlet />
-		</div>
+		</>
 	);
 }

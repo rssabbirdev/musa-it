@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 
 export default function HomeIcons() {
 	return (
-		<div className='animate-pulse'>
+		<div className='animate-pulse relative md:left-20 lg:left-10'>
 			<div>
 				<TfiMusicAlt className='text-4xl relative right-20 top-10 -rotate-45' />
 				<PiMusicNoteLight className='text-4xl relative -left-9 bottom-10 -rotate-45' />
@@ -39,7 +39,9 @@ export default function HomeIcons() {
 					ButtonIcon={TbBrandGoogleAnalytics}
 					buttonName={'Analyse your music'}
 					iconClassName='text-2xl'
-					buttonClassName={'relative bottom-[200px] right-[200px]'}
+					buttonClassName={
+						'md:relative bottom-[200px] right-[135px] lg:right-[200px]'
+					}
 				/>
 			</div>
 		</div>
