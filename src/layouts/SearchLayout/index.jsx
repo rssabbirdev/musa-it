@@ -7,7 +7,7 @@ export default function SearchLayout() {
 	const [navMenuData, setMenuData] = useState([]);
 
 	return (
-		<div className=''>
+		<div className='animate-fadeOut'>
 			<div className='container m-auto'>
 				<Navbar navMenuData={navMenuData} />
 			</div>
