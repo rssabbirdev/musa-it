@@ -3,6 +3,8 @@ import Main from '../layouts/Main';
 import Home from '../pages/Home';
 import SearchLayout from '../layouts/SearchLayout';
 import Search from '../pages/Search';
+import Visualize from './../pages/Visualize/index';
+import VisualizeLayout from '../layouts/VisualizeLayout';
 
 export const router = createBrowserRouter([
 	{
@@ -22,6 +24,16 @@ export const router = createBrowserRouter([
 			{
 				path: '/search',
 				element: <Search />,
+			},
+		],
+	},
+	{
+		path: '/visualize',
+		element: <VisualizeLayout />,
+		children: [
+			{
+				path: '/visualize',
+				element: <Visualize />,
 			},
 		],
 	},

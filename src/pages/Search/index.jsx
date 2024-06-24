@@ -7,8 +7,9 @@ import { useRef, useState } from 'react';
 import SearchDataDisplay from './SearchDataDisplay';
 import SongList from './SongList';
 import { mergeDataBySubreddit } from '../../utils/mergeDataBySubreddit';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
+import VisualizeFilter from './VisualizeFilter';
 
 export default function Search() {
 	const inputRef = useRef(null);
@@ -17,24 +18,46 @@ export default function Search() {
 	const [selectedCategory, setSelectedCategory] = useState({});
 	const [searchResult, setSearchResult] = useState([]);
 	const [error, setError] = useState('');
+	const [isVisualize, setIsVisualize] = useState(false);
+	const navigate = useNavigate();
+
+	const handleSubmitFilter = (e) => {
+		e.preventDefault();
+		if (e.nativeEvent.submitter) {
+			const column = e.target.column.value;
+			const period = e.target.period.value;
+			const query = e.target.search.value;
+			const category = `${selectedCategory.subreddit} (${selectedCategory.count})`
+			// const filter = { column, period, query };
+			if (column && period && query) {
+				navigate(
+					`/visualize?column=${column}&period=${period}&query=${query}&category=${category}`
+				);
+			}
+		}
+	};
 
 	const handleSubmit = (e) => {
-		if (inputText.length >= 3) {
-			if (e.keyCode === 13 || e.which === 13) {
-				setError('');
-				setSelectedCategory({});
-				setSearchResult([]);
-				enterSearch(inputText);
-				// Example: Close the mobile keyboard
-				if (inputRef.current) {
-					inputRef.current.blur(); // Blur the input to close the keyboard
+		if (!e.nativeEvent.submitter) {
+			if (inputText.length >= 3) {
+				if (e.keyCode === 13 || e.which === 13) {
+					setError('');
+					setIsVisualize(false);
+					setSelectedCategory({});
+					setSearchResult([]);
+					enterSearch(inputText);
+					// Example: Close the mobile keyboard
+					if (inputRef.current) {
+						inputRef.current.blur(); // Blur the input to close the keyboard
+					}
 				}
-			}
-			if (e === 'clickSearch') {
-				setError('');
-				setSelectedCategory({});
-				setSearchResult([]);
-				enterSearch(inputText);
+				if (e === 'clickSearch') {
+					setError('');
+					setIsVisualize(false);
+					setSelectedCategory({});
+					setSearchResult([]);
+					enterSearch(inputText);
+				}
 			}
 		}
 	};
@@ -55,7 +78,7 @@ export default function Search() {
 			});
 	};
 	return (
-		<div className=''>
+		<form onSubmit={handleSubmitFilter} className=''>
 			<div
 				className={`flex flex-col gap-3 justify-center items-center h-[40vh] transition-all ${
 					selectedCategory?.subreddit && 'h-[15vh]'
@@ -99,6 +122,7 @@ export default function Search() {
 						placeholder='Type to search..'
 						onKeyUp={(e) => handleSubmit(e)}
 						ref={inputRef}
+						name='search'
 					/>
 					<div
 						onClick={() => {
@@ -117,6 +141,7 @@ export default function Search() {
 									setSearchResult([]);
 									setError('');
 									setSelectedCategory({});
+									setIsVisualize(false);
 								}}
 								className={`arrow-icon ${active && 'active'}`}
 							/>
@@ -139,7 +164,10 @@ export default function Search() {
 						} bg-[#C0CFF5] text-black py-[2px] px-3 rounded-full`}
 					>
 						<IoClose
-							onClick={() => setSelectedCategory({})}
+							onClick={() => {
+								setSelectedCategory({});
+								setIsVisualize(false);
+							}}
 							className='inline-block bg-white rounded-full m-1 text-black hover:cursor-pointer hover:bg-black hover:text-white transition'
 						/>
 						{selectedCategory?.subreddit} ({selectedCategory.count})
@@ -147,7 +175,7 @@ export default function Search() {
 				</div>
 			</div>
 
-			<div>
+			<div className={`${isVisualize && 'hidden'}`}>
 				{!searchResult?.length && (
 					<p className='animate-fadeOut text-center font-light font-mono text-lg'>
 						{inputText.length < 3 &&
@@ -171,18 +199,41 @@ export default function Search() {
 					<SongList selectedCategory={selectedCategory} />
 				)}
 			</div>
+			{/* Visualize Filter */}
+			{/* <form onSubmit={handleSubmitFilter}> */}
+			<div className={`animate-fadeOut ${!isVisualize && 'hidden'}`}>
+				<VisualizeFilter />
+			</div>
 			{selectedCategory?.subreddit && (
-				<div className='sticky bottom-8 flex justify-center animate-fadeOut'>
-					<Link to={'#'}>
+				<div className='sticky bottom-8 flex justify-center'>
+					<div
+						onClick={() => setIsVisualize(true)}
+						className={`${
+							isVisualize && 'hidden'
+						} animate-fadeOut w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+					>
+						<MdOutlineRemoveRedEye className={'text-3xl'} />
+						<span className='text-sm'>{'Visualize Data'}</span>
+					</div>
+					<div className={`flex gap-5 ${!isVisualize && 'hidden'}`}>
 						<div
-							className={`w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+							onClick={() => setIsVisualize(false)}
+							className={`animate-fadeOut w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-red-300 text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
 						>
-							<MdOutlineRemoveRedEye className={'text-3xl'} />
-							<span className='text-sm'>{'Visualize Data'}</span>
+							<IoClose className={'text-3xl'} />
+							<span className='text-sm'>{'Cancel'}</span>
 						</div>
-					</Link>
+						<button
+							type='submit'
+							className={`animate-fadeOut w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+						>
+							<IoIosArrowRoundForward className={'text-3xl'} />
+							<span className='text-sm'>{'Continue'}</span>
+						</button>
+					</div>
 				</div>
 			)}
-		</div>
+			{/* </form> */}
+		</form>
 	);
 }
