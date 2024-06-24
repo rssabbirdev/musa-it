@@ -1,0 +1,68 @@
+[
+	{
+		"id": 1,
+		"column": "emotion",
+		"data": [
+			{
+				"period": "daily",
+				"url": "/src/assets/files/emotion_time_series_D.html"
+			},
+			{
+				"period": "weekly",
+				"url": "/src/assets/files/emotion_time_series_W.html"
+			},
+			{
+				"period": "monthly",
+				"url": "/src/assets/files/emotion_time_series_M.html"
+			},
+			{
+				"period": "all",
+				"url": "/src/assets/files/emotion_percentage.html"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"column": "sentiment",
+		"data": [
+			{
+				"period": "daily",
+				"url": "/src/assets/files/sentiment_time_series_D.html"
+			},
+			{
+				"period": "weekly",
+				"url": "/src/assets/files/sentiment_time_series_W.html"
+			},
+			{
+				"period": "monthly",
+				"url": "/src/assets/files/sentiment_time_series_M.html"
+			},
+			{
+				"period": "all",
+				"url": "/src/assets/files/sentiment_percentage.html"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"column": "topic",
+		"data": [
+			{
+				"period": "daily",
+				"url": "/src/assets/files/topics_time_series_D.html"
+			},
+			{
+				"period": "weekly",
+				"url": "/src/assets/files/topics_time_series_W.html"
+			},
+			{
+				"period": "monthly",
+				"url": "/src/assets/files/topics_time_series_M.html"
+			},
+			{
+				"period": "all",
+				"url": "/src/assets/files/topics_percentage.html"
+			}
+		]
+	}
+]

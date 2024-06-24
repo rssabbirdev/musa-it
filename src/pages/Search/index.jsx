@@ -7,7 +7,7 @@ import { useRef, useState } from 'react';
 import SearchDataDisplay from './SearchDataDisplay';
 import SongList from './SongList';
 import { mergeDataBySubreddit } from '../../utils/mergeDataBySubreddit';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import VisualizeFilter from './VisualizeFilter';
 
@@ -27,7 +27,7 @@ export default function Search() {
 			const column = e.target.column.value;
 			const period = e.target.period.value;
 			const query = e.target.search.value;
-			const category = `${selectedCategory.subreddit} (${selectedCategory.count})`
+			const category = `${selectedCategory.subreddit} (${selectedCategory.count})`;
 			// const filter = { column, period, query };
 			if (column && period && query) {
 				navigate(
@@ -63,7 +63,7 @@ export default function Search() {
 	};
 
 	const enterSearch = (searchQuery) => {
-		fetch('/src/assets/files/metadata.json')
+		fetch('metadata.json')
 			.then((res) => res.json())
 			.then((data) => {
 				const filteredSearchResult = data.filter((item) =>
