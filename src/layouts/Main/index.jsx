@@ -30,11 +30,13 @@ export default function Main() {
 				<div className='container m-auto'>
 					<Navbar navMenuData={navMenuData} />
 				</div>
-				<div>
-					<Outlet />
-				</div>
-				<div>
-					<Footer />
+				<div className='flex justify-between flex-col'>
+					<div>
+						<Outlet />
+					</div>
+					<div>
+						<Footer />
+					</div>
 				</div>
 			</div>
 		</>

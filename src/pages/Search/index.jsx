@@ -10,6 +10,7 @@ import { mergeDataBySubreddit } from '../../utils/mergeDataBySubreddit';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import VisualizeFilter from './VisualizeFilter';
+import { searchInArray } from '../../utils/searchInArray';
 
 export default function Search() {
 	const inputRef = useRef(null);
@@ -63,19 +64,30 @@ export default function Search() {
 	};
 
 	const enterSearch = (searchQuery) => {
-		fetch('metadata.json')
-			.then((res) => res.json())
-			.then((data) => {
-				const filteredSearchResult = data.filter((item) =>
-					item.body.includes(searchQuery)
-				);
-				const mergedBySubreddit =
-					mergeDataBySubreddit(filteredSearchResult);
-				setSearchResult(mergedBySubreddit);
-				if (mergedBySubreddit.length === 0) {
-					setError('Search Result Not Found!');
-				}
-			});
+		setError('');
+		try {
+			fetch('metadata.json')
+				.then((res) => res.json())
+				.then((data) => {
+					// const filteredSearchResult = data.filter((item) =>
+					// 	item?.body
+					// 		?.toLowerCase()
+					// 		?.includes(searchQuery.toLowerCase())
+					// );
+					const filteredSearchResult = searchInArray(
+						data,
+						searchQuery
+					);
+					const mergedBySubreddit =
+						mergeDataBySubreddit(filteredSearchResult);
+					setSearchResult(mergedBySubreddit);
+					if (mergedBySubreddit.length === 0) {
+						setError('Search Result Not Found!');
+					}
+				});
+		} catch (e) {
+			setError('Something went wrong with your search');
+		}
 	};
 	return (
 		<form onSubmit={handleSubmitFilter} className=''>
@@ -218,17 +230,21 @@ export default function Search() {
 					<div className={`flex gap-5 ${!isVisualize && 'hidden'}`}>
 						<div
 							onClick={() => setIsVisualize(false)}
-							className={`animate-fadeOut w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-red-300 text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+							className={`animate-fadeOut w-[100px] sm:w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-red-300 text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
 						>
 							<IoClose className={'text-3xl'} />
-							<span className='text-sm'>{'Cancel'}</span>
+							<span className='text-sm hidden sm:block'>
+								{'Cancel'}
+							</span>
 						</div>
 						<button
 							type='submit'
-							className={`animate-fadeOut w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+							className={`animate-fadeOut w-[100px] sm:w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
 						>
 							<IoIosArrowRoundForward className={'text-3xl'} />
-							<span className='text-sm'>{'Continue'}</span>
+							<span className='text-sm hidden sm:block'>
+								{'Continue'}
+							</span>
 						</button>
 					</div>
 				</div>

@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 
 export default function HomeIcons() {
 	return (
-		<div className='animate-pulse relative md:left-20 lg:left-10'>
+		<div className='animate-pulse relative md:left-20 lg:-left-10'>
 			<div>
 				<TfiMusicAlt className='text-4xl relative right-20 top-10 -rotate-45' />
 				<PiMusicNoteLight className='text-4xl relative -left-9 bottom-10 -rotate-45' />

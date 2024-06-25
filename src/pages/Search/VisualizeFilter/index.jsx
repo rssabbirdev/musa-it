@@ -87,6 +87,22 @@ export default function VisualizeFilter() {
 						<li className='w-full'>
 							<div className='flex items-center gap-5'>
 								<input
+									id='allPeriod'
+									type='radio'
+									value='all'
+									name='period'
+								/>
+								<label
+									htmlFor='allPeriod'
+									className='w-full py-5'
+								>
+									All
+								</label>
+							</div>
+						</li>
+						<li className='w-full'>
+							<div className='flex items-center gap-5'>
+								<input
 									id='daily'
 									type='radio'
 									value='daily'

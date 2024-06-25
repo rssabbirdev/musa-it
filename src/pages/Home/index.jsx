@@ -1,5 +1,5 @@
 import Particles, { initParticlesEngine } from '@tsparticles/react';
-import manImage from '../../assets/man-hold-a-phone.png';
+import manImage from '../../assets/img.png';
 import { useEffect, useMemo, useState } from 'react';
 import { loadSlim } from '@tsparticles/slim';
 import LogoSpinner from '../../components/LogoSpinner';
@@ -537,7 +537,7 @@ export default function Home() {
 		return <LogoSpinner />;
 	}
 	return (
-		<div className='border-none pb-36 md:pb-8'>
+		<div className='border-none pb-36 md:pb-8 h-screen'>
 			<Particles
 				id='tsparticles'
 				particlesLoaded={particlesLoaded}
@@ -554,13 +554,13 @@ export default function Home() {
 					</p>
 				</div>
 				<div className=''>
-					<div className='absolute hidden md:block'>
+					<div className='absolute hidden lg:block'>
 						<HomeIcons />
 					</div>
 					<div className='relative -bottom-[100px] md:left-5 hidden md:block'>
 						<img
 							src={manImage}
-							width={283}
+							width={320}
 							alt='Man Holding a Phone'
 						/>
 					</div>
@@ -577,9 +577,9 @@ export default function Home() {
 				</div> */}
 				<Link to={'/search'}>
 					<div
-						className={`mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+						className={`mt-10 md:mt-20 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full transition-all  hover:px-8 hover:-translate-y-1 hover:cursor-pointer hover:shadow-md hover:shadow-white w-[250px]`}
 					>
-						<CiSearch className={'text-3xl'} />
+						<CiSearch className={'text-4xl'} />
 						<span className='text-sm'>{'Search Reddit'}</span>
 					</div>
 				</Link>
