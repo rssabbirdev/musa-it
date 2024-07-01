@@ -23,6 +23,7 @@ export default function Search() {
 	const navigate = useNavigate();
 
 	const handleSubmitFilter = (e) => {
+		setError('');
 		e.preventDefault();
 		if (e.nativeEvent.submitter) {
 			const column = e.target.column.value;
@@ -34,12 +35,14 @@ export default function Search() {
 				navigate(
 					`/visualize?column=${column}&period=${period}&query=${query}&category=${category}`
 				);
+			} else {
+				setError('Please Select Option First');
 			}
 		}
 	};
 
 	const handleSubmit = (e) => {
-		if (!e.nativeEvent.submitter) {
+		if (!e.nativeEvent?.submitter) {
 			if (inputText.length >= 3) {
 				if (e.keyCode === 13 || e.which === 13) {
 					setError('');
@@ -141,11 +144,16 @@ export default function Search() {
 							setActive('true');
 						}}
 					>
-						{!inputText?.length && (
-							<IoIosArrowRoundForward
-								className={`arrow-icon ${active && 'active'}`}
-							/>
-						)}
+						{/* {!inputText?.length && ( */}
+						<IoIosArrowRoundForward
+							onClick={() =>
+								active && handleSubmit('clickSearch')
+							}
+							className={`arrow-icon transition-all ${
+								!!inputText.length && '!mr-8'
+							} ${active && 'active'}`}
+						/>
+						{/* )} */}
 						{!!inputText?.length && (
 							<IoClose
 								onClick={() => {
@@ -155,7 +163,9 @@ export default function Search() {
 									setSelectedCategory({});
 									setIsVisualize(false);
 								}}
-								className={`arrow-icon ${active && 'active'}`}
+								className={`arrow-icon transition-all !mr-2 !w-[25px] !h-[25px] !p-1 !bg-black !text-white ${
+									active && 'active'
+								}`}
 							/>
 						)}
 					</div>
@@ -188,12 +198,9 @@ export default function Search() {
 			</div>
 
 			<div className={`${isVisualize && 'hidden'}`}>
-				{!searchResult?.length && (
+				{inputText?.length <= 0 && !searchResult?.length && (
 					<p className='animate-fadeOut text-center font-light font-mono text-lg'>
-						{inputText.length < 3 &&
-							`Minimum type ${
-								3 - Number(inputText.length)
-							} letter for search...`}
+						Enter your Search Query
 					</p>
 				)}
 				{error && (
@@ -214,6 +221,11 @@ export default function Search() {
 			{/* Visualize Filter */}
 			{/* <form onSubmit={handleSubmitFilter}> */}
 			<div className={`animate-fadeOut ${!isVisualize && 'hidden'}`}>
+				{error && (
+					<p className='animate-fadeOut text-center font-light font-mono text-lg'>
+						{error}
+					</p>
+				)}
 				<VisualizeFilter />
 			</div>
 			{selectedCategory?.subreddit && (
@@ -229,7 +241,10 @@ export default function Search() {
 					</div>
 					<div className={`flex gap-5 ${!isVisualize && 'hidden'}`}>
 						<div
-							onClick={() => setIsVisualize(false)}
+							onClick={() => {
+								setIsVisualize(false);
+								setError('');
+							}}
 							className={`animate-fadeOut w-[100px] sm:w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-red-300 text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
 						>
 							<IoClose className={'text-3xl'} />

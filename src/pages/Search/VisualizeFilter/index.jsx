@@ -7,13 +7,22 @@ export default function VisualizeFilter() {
 		<div className='container m-auto'>
 			<div className='flex justify-center py-5'>
 				<div
-					className={`animate-fadeOut w-[200px] mt-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
+					className={`animate-fadeOut w-[200px]  md:my-10 md:mt-0 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full hover:bg-[#D9D9D9] hover:text-[#546082] hover:cursor-pointer`}
 				>
 					<BiCloudDownload className={'text-3xl'} />
-					<span className='text-sm'>{'Download CSV'}</span>
+					{/* <span className='text-sm'>{'Download CSV'}</span> */}
+					<a
+						href='/src/assets/files/metadata.csv'
+						download
+						rel='noopener noreferrer'
+						target='_blank'
+						className='text-black'
+					>
+						Download File
+					</a>
 				</div>
 			</div>
-			<div className='grid grid-cols-1 md:grid-cols-2'>
+			<div className='grid grid-cols-1 md:grid-cols-2 mb-20'>
 				{/* First Column */}
 				<div className='m-auto'>
 					<div>
@@ -68,6 +77,13 @@ export default function VisualizeFilter() {
 									htmlFor='topics'
 									className='w-full py-5 '
 								>
+									Topics
+								</label>
+							</div>
+						</li>
+						<li className='w-full'>
+							<div className='flex items-center gap-5'>
+								<label className='w-full py-5 opacity-0'>
 									Topics
 								</label>
 							</div>

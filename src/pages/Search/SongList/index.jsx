@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { CgSmileSad } from 'react-icons/cg';
-import { IoIosTrendingDown } from 'react-icons/io';
+import { CgSmile, CgSmileSad } from 'react-icons/cg';
+import { IoIosTrendingDown, IoIosTrendingUp } from 'react-icons/io';
 import { PiMusicNoteLight } from 'react-icons/pi';
 
-export default function SongList({selectedCategory = {}}) {
+export default function SongList({ selectedCategory = {} }) {
 	return (
 		<div className='animate-fadeOut'>
 			<div className='container m-auto'>
@@ -37,7 +37,7 @@ export default function SongList({selectedCategory = {}}) {
 	);
 }
 
-const SongItem = ({item}) => {
+const SongItem = ({ item }) => {
 	return (
 		<div className='block lg:flex justify-between items-start bg-slate-950 p-6 rounded-lg my-4 hover:cursor-pointer'>
 			<div className='w-full lg:w-2/3 pb-5 lg:pb-0'>
@@ -46,17 +46,34 @@ const SongItem = ({item}) => {
 			<div className='w-full lg:w-1/3 flex justify-between'>
 				<div className='flex flex-col justify-center items-center w-1/3'>
 					<PiMusicNoteLight className='text-3xl' />
-					<span>{item?.topics}</span>
+					<span>{textFormat(item?.topics)}</span>
 				</div>
 				<div className='flex flex-col justify-center items-center w-1/3'>
-					<IoIosTrendingDown className='text-3xl' />
-					<span>{item?.sentiment}</span>
+					{item?.sentiment == 'negative' ? (
+						<IoIosTrendingDown className='text-3xl' />
+					) : (
+						<IoIosTrendingUp className='text-3xl' />
+					)}
+					<span>{textFormat(item?.sentiment)}</span>
 				</div>
 				<div className='flex flex-col justify-center items-center w-1/3'>
-					<CgSmileSad className='text-3xl' />
-					<span>{item?.emotion}</span>
+					{item?.emotion == 'sadness' ? (
+						<CgSmileSad className='text-3xl' />
+					) : (
+						<CgSmile className='text-3xl' />
+					)}
+					<span>{textFormat(item?.emotion)}</span>
 				</div>
 			</div>
 		</div>
 	);
+};
+
+const textFormat = (text) => {
+	const textArray = text.split('_');
+	const nextFormat = textArray?.map(
+		(n) => n.charAt(0).toUpperCase() + n.slice(1)
+	);
+	const newText = nextFormat.join(' ');
+	return newText;
 };
