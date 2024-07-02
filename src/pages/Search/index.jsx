@@ -150,11 +150,11 @@ export default function Search() {
 								active && handleSubmit('clickSearch')
 							}
 							className={`arrow-icon transition-all ${
-								!!inputText.length && '!mr-8'
+								!!inputText.length && ''
 							} ${active && 'active'}`}
 						/>
 						{/* )} */}
-						{!!inputText?.length && (
+						{/* {!!inputText?.length && (
 							<IoClose
 								onClick={() => {
 									setInputText('');
@@ -167,7 +167,7 @@ export default function Search() {
 									active && 'active'
 								}`}
 							/>
-						)}
+						)} */}
 					</div>
 					<div
 						onClick={() => {
@@ -176,6 +176,13 @@ export default function Search() {
 					>
 						<IoClose
 							className={`cancel-icon ${active && 'active'}`}
+							onClick={() => {
+								setInputText('');
+								setSearchResult([]);
+								setError('');
+								setSelectedCategory({});
+								setIsVisualize(false);
+							}}
 						/>
 					</div>
 				</div>
