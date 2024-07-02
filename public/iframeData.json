@@ -5,19 +5,19 @@
 		"data": [
 			{
 				"period": "daily",
-				"url": "/src/assets/files/emotion_time_series_D.html"
+				"url": "/files/emotion_time_series_D.html"
 			},
 			{
 				"period": "weekly",
-				"url": "/src/assets/files/emotion_time_series_W.html"
+				"url": "/files/emotion_time_series_W.html"
 			},
 			{
 				"period": "monthly",
-				"url": "/src/assets/files/emotion_time_series_M.html"
+				"url": "/files/emotion_time_series_M.html"
 			},
 			{
 				"period": "all",
-				"url": "/src/assets/files/emotion_percentage.html"
+				"url": "/files/emotion_percentage.html"
 			}
 		]
 	},
@@ -27,19 +27,19 @@
 		"data": [
 			{
 				"period": "daily",
-				"url": "/src/assets/files/sentiment_time_series_D.html"
+				"url": "/files/sentiment_time_series_D.html"
 			},
 			{
 				"period": "weekly",
-				"url": "/src/assets/files/sentiment_time_series_W.html"
+				"url": "/files/sentiment_time_series_W.html"
 			},
 			{
 				"period": "monthly",
-				"url": "/src/assets/files/sentiment_time_series_M.html"
+				"url": "/files/sentiment_time_series_M.html"
 			},
 			{
 				"period": "all",
-				"url": "/src/assets/files/sentiment_percentage.html"
+				"url": "/files/sentiment_percentage.html"
 			}
 		]
 	},
@@ -49,19 +49,19 @@
 		"data": [
 			{
 				"period": "daily",
-				"url": "/src/assets/files/topics_time_series_D.html"
+				"url": "/files/topics_time_series_D.html"
 			},
 			{
 				"period": "weekly",
-				"url": "/src/assets/files/topics_time_series_W.html"
+				"url": "/files/topics_time_series_W.html"
 			},
 			{
 				"period": "monthly",
-				"url": "/src/assets/files/topics_time_series_M.html"
+				"url": "/files/topics_time_series_M.html"
 			},
 			{
 				"period": "all",
-				"url": "/src/assets/files/topics_percentage.html"
+				"url": "/files/topics_percentage.html"
 			}
 		]
 	}

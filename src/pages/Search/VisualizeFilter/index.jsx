@@ -81,13 +81,13 @@ export default function VisualizeFilter() {
 								</label>
 							</div>
 						</li>
-						<li className='w-full'>
+						{/* <li className='w-full'>
 							<div className='flex items-center gap-5'>
 								<label className='w-full py-5 opacity-0'>
 									Topics
 								</label>
 							</div>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 				{/* Second Column */}
@@ -100,7 +100,7 @@ export default function VisualizeFilter() {
 						</div>
 					</div>
 					<ul className='ms-14 mt-5'>
-						<li className='w-full'>
+						{/* <li className='w-full'>
 							<div className='flex items-center gap-5'>
 								<input
 									id='allPeriod'
@@ -115,7 +115,7 @@ export default function VisualizeFilter() {
 									All
 								</label>
 							</div>
-						</li>
+						</li> */}
 						<li className='w-full'>
 							<div className='flex items-center gap-5'>
 								<input
