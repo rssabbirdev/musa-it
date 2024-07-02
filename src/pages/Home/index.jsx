@@ -577,10 +577,10 @@ export default function Home() {
 				</div> */}
 				<Link to={'/search'}>
 					<div
-						className={`mt-10 md:mt-20 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full transition-all  hover:px-8 hover:-translate-y-1 hover:cursor-pointer hover:shadow-md hover:shadow-white w-[250px]`}
+						className={`mt-10 md:mt-20 flex justify-center items-center gap-1 bg-white text-black px-5 py-2 rounded-full transition-all  hover:px-8 hover:-translate-y-1 hover:cursor-pointer hover:shadow-md hover:shadow-white w-[250px] lg:w-[400px]`}
 					>
-						<CiSearch className={'text-4xl'} />
-						<span className='text-sm'>{'Search Reddit'}</span>
+						<CiSearch className={'text-4xl lg:text-5xl'} />
+						<span className='text-sm lg:text-lg'>{'Search Reddit'}</span>
 					</div>
 				</Link>
 			</div>
