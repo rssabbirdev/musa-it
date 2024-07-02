@@ -42,7 +42,7 @@ export default function Search() {
 	};
 
 	const handleSubmit = (e) => {
-		if (!e.nativeEvent?.submitter) {
+		if (!e.nativeEvent?.submitter && !isVisualize) {
 			if (inputText.length >= 3) {
 				if (e.keyCode === 13 || e.which === 13) {
 					setError('');
@@ -97,7 +97,7 @@ export default function Search() {
 			<div
 				className={`flex flex-col gap-3 justify-center items-center h-[40vh] transition-all ${
 					selectedCategory?.subreddit && 'h-[15vh]'
-				}`}
+				} ${isVisualize && 'opacity-75'}`}
 			>
 				<div
 					className={`search-box ${
@@ -138,22 +138,23 @@ export default function Search() {
 						onKeyUp={(e) => handleSubmit(e)}
 						ref={inputRef}
 						name='search'
+						disabled={isVisualize}
 					/>
 					<div
 						onClick={() => {
 							setActive('true');
 						}}
 					>
-						{/* {!inputText?.length && ( */}
-						<IoIosArrowRoundForward
-							onClick={() =>
-								active && handleSubmit('clickSearch')
-							}
-							className={`arrow-icon transition-all ${
-								!!inputText.length && ''
-							} ${active && 'active'}`}
-						/>
-						{/* )} */}
+						{!!inputText?.length && (
+							<IoIosArrowRoundForward
+								onClick={() =>
+									active && handleSubmit('clickSearch')
+								}
+								className={`arrow-icon transition-all ${
+									!!inputText.length && ''
+								} ${active && 'active'}`}
+							/>
+						)}
 						{/* {!!inputText?.length && (
 							<IoClose
 								onClick={() => {
